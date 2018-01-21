@@ -3,11 +3,27 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/labstack/gommon/log"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+
+	"github.com/labstack/gommon/log"
 )
+
+type CustomerInt interface {
+	CreateCustomer(configuration *Configuration) Customer
+}
+
+type MockCustomer struct{}
+
+func (*MockCustomer) CreateCustomer(Configuration) Customer {
+	var customer Customer
+	customer.AssignedAddress = "AL25CRCDB1jfWPgxMKgWQ5MvWxpTy2BfJ6"
+	customer.Deposit = 0
+	customer.StartBlock = 1840533
+	customer.StatusPaid = false
+	return customer
+}
 
 type Customer struct {
 	AssignedAddress string `json:"address"`

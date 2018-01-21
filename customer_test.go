@@ -5,6 +5,9 @@ import (
 	//"fmt"
 )
 
+var mockCustomer = &MockCustomer{}
+var TestCustomer = mockCustomer.CreateCustomer(*TestConfiguration)
+
 func TestGetNewAddress(t *testing.T) {
 	expectedLength := len("AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4")
 
