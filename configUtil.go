@@ -1,18 +1,32 @@
 package main
 
 import (
-	"os"
 	"encoding/json"
 	"fmt"
+	"os"
 )
+
+type Configurator interface {
+	NewConfiguraion() Configuration
+}
 
 //from config.json
 type Configuration struct {
-	NodeURI string
+	NodeURI     string
 	WaitTimeSec int
 }
 
-func NewConfiguraion() (*Configuration) {
+// new struct for mocking
+type MockConfiguration struct{}
+
+//func for configuration substitution
+func (*MockConfiguration) NewConfiguraion() *Configuration {
+	var configuration Configuration
+	configuration.NodeURI = "http://localhost:10332"
+	return &configuration
+}
+
+func NewConfiguraion() *Configuration {
 	file, _ := os.Open("config.json")
 	decoder := json.NewDecoder(file)
 	configuration := Configuration{}
@@ -23,4 +37,3 @@ func NewConfiguraion() (*Configuration) {
 	}
 	return &configuration
 }
-

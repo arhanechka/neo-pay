@@ -4,9 +4,8 @@ import (
 	"testing"
 )
 
-
 func TestNewConfiguraion(t *testing.T) {
-	configuratin := Configuration{NodeURI:"http://localhost:10332"}
+	configuratin := TestConfiguration
 	expectedURI := configuratin.NodeURI
 	actualConfiguration := NewConfiguraion()
 
