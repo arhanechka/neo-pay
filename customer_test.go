@@ -5,9 +5,6 @@ import (
 	//"fmt"
 )
 
-var mockConfiguration = &MockConfiguration{}
-var TestConfiguration = mockConfiguration.NewConfiguraion()
-
 func TestGetNewAddress(t *testing.T) {
 	expectedLength := len("AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4")
 

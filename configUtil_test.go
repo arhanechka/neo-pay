@@ -4,6 +4,9 @@ import (
 	"testing"
 )
 
+var mockConfiguration = &MockConfiguration{}
+var TestConfiguration = mockConfiguration.NewConfiguraion()
+
 func TestNewConfiguraion(t *testing.T) {
 	configuratin := TestConfiguration
 	expectedURI := configuratin.NodeURI
