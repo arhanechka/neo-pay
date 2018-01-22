@@ -26,20 +26,21 @@ func TestGetNewAddress(t *testing.T) {
 
 func TestCreateCustomer(t *testing.T) {
 
-	var expectedBalance int64 = 0
+	//var expectedBalance int64 = 0
 	expectedStartBlock := GetCurrentBlockIndex(TestConfiguration)
-	expectedStatusPaid := false
+	//expectedStatusPaid := false
 	//expectedAddress := "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4"
 
 	//here we use only mock of configuration, because we need the actual CurrentBlock for comparing
 	actualCustomer := CreateCustomer(TestConfiguration)
-	if actualCustomer.Deposit != expectedBalance {
+
+	if actualCustomer.Deposit != TestCustomer.Deposit {
 		t.Errorf("CreateCustomer returned unexpected customer object balance : got %v want %v", actualCustomer.Deposit, expectedBalance)
 	}
 	if actualCustomer.StartBlock != expectedStartBlock {
 		t.Errorf("CreateCustomer returned unexpected customer object startBlock : got %+v want %+v", actualCustomer.StartBlock, expectedStartBlock)
 	}
-	if actualCustomer.StatusPaid != expectedStatusPaid {
+	if actualCustomer.StatusPaid != TestCustomer.StatusPaid {
 		t.Errorf("CreateCustomer returned unexpected customer object statusPaid : got %v want %v", actualCustomer.StatusPaid, expectedStatusPaid)
 	}
 
