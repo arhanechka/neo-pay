@@ -22,7 +22,7 @@ type MockConfiguration struct{}
 //func for configuration substitution
 func (*MockConfiguration) NewConfiguraion() *Configuration {
 	var configuration Configuration
-	configuration.NodeURI = "http://localhost:20332"
+	configuration.NodeURI = "http://localhost:10332"
 	return &configuration
 }
 
