@@ -24,7 +24,7 @@ func TestStatusHandler(t *testing.T) {
 
 	resp := rr.Result()
 	body, _ := ioutil.ReadAll(resp.Body)
-	expectedCustomer := TestCustomer
+	expectedCustomer := Customer{AssignedAddress: "AL25CRCDB1jfWPgxMKgWQ5MvWxpTy2BfJ6", Deposit: 0, StartBlock: 1840533, StatusPaid: false}
 	var testCustomer Customer
 
 	error := json.Unmarshal(body, &testCustomer)

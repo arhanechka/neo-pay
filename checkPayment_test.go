@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/CityOfZion/neo-go-sdk/neo/models"
@@ -9,6 +8,7 @@ import (
 
 func TestCheckVouts(t *testing.T) {
 	var vouts []models.Vout
+	customer := Customer{AssignedAddress: "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4", StartBlock: 182117, StatusPaid: false, Deposit: 0}
 
 	//add 10
 	voutGoodWithMoney := models.Vout{Address: "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4",
@@ -36,11 +36,10 @@ func TestCheckVouts(t *testing.T) {
 
 	transaction := models.Transaction{Vout: vouts}
 
-	checkCurrentBlockTransactions(transaction, &TestCustomer)
+	checkCurrentBlockTransactions(transaction, &customer)
 	expectedBalance := int64(13)
 
-	actualBalance := TestCustomer.Deposit
-	fmt.Println(TestCustomer.Deposit)
+	actualBalance := customer.Deposit
 
 	if actualBalance != expectedBalance {
 		t.Errorf("checkVouts returned unexpected customer balance: got %v want %v", actualBalance, expectedBalance)

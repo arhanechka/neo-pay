@@ -22,7 +22,7 @@ var (
 func NewAddressHandler(w http.ResponseWriter, req *http.Request) {
 	session, _ := store.Get(req, "neo-pay-cookie")
 
-	CurrentCustomer = CreateCustomer(configuration)
+	CurrentCustomer = CreateCustomer(configuration, &CurrentCustomer)
 
 	session.Values["address"] = CurrentCustomer.AssignedAddress
 	session.Save(req, w)
@@ -43,7 +43,7 @@ func StatusHandler(w http.ResponseWriter, req *http.Request) {
 
 	//if current customer is empty or invalid
 	if CurrentCustomer.AssignedAddress == "" || CurrentCustomer.StartBlock == -1 {
-		CurrentCustomer = CreateCustomer(configuration)
+		CurrentCustomer = CreateCustomer(configuration, &CurrentCustomer)
 	}
 
 	if CurrentCustomer.StartBlock < GetCurrentBlockIndex(configuration) {

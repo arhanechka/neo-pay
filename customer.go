@@ -10,11 +10,6 @@ import (
 	"github.com/labstack/gommon/log"
 )
 
-type CustomerInt interface {
-	CreateCustomer(configuration *Configuration) Customer
-	GetNewAddress(configuration *Configuration) (string, error)
-}
-
 type Customer struct {
 	AssignedAddress string `json:"address"`
 	Deposit         int64  `json:"deposit"`
@@ -23,10 +18,12 @@ type Customer struct {
 }
 
 //for better testing and mocking
-type NewAddressGetter func(Configuration) (string, error)
+type NewAddressGetter interface {
+	GetNewAddress(*Configuration) (string, error)
+}
 
-func CreateCustomer(configuration *Configuration) Customer {
-	_assignedAddress, err := GetNewAddress(configuration)
+func CreateCustomer(configuration *Configuration, na NewAddressGetter) Customer {
+	_assignedAddress, err := na.GetNewAddress(configuration)
 	if err != nil {
 		fmt.Printf("Customer will be returned without address. %v\n", err)
 		_assignedAddress = ""
@@ -37,7 +34,7 @@ func CreateCustomer(configuration *Configuration) Customer {
 
 }
 
-func GetNewAddress(configuration *Configuration) (string, error) {
+func (*Customer) GetNewAddress(configuration *Configuration) (string, error) {
 	//return "AeQeWwHki197HDhaZJFKLeUN5tzi32gyZr"
 	//return "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4"
 
