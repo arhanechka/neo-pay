@@ -9,8 +9,7 @@ import (
 
 func TestCheckVouts(t *testing.T) {
 
-	customer := Customer{AssignedAddress: "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4", StartBlock: 182117, StatusPaid: false, Deposit: 0}
-
+	customer := TestCustomer
 	var vouts []models.Vout
 
 	//add 10

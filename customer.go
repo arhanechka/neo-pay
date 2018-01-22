@@ -20,9 +20,9 @@ type MockCustomer struct{}
 //func for customer substitution
 func (*MockCustomer) CreateCustomer(Configuration) Customer {
 	var customer Customer
-	customer.AssignedAddress = "AL25CRCDB1jfWPgxMKgWQ5MvWxpTy2BfJ6"
+	customer.AssignedAddress = "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4"
 	customer.Deposit = 0
-	customer.StartBlock = 1840533
+	customer.StartBlock = 182117
 	customer.StatusPaid = false
 	return customer
 }
