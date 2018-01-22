@@ -4,12 +4,14 @@ import (
 	"testing"
 )
 
+//declaration of structure for mocking configuration
 var mockConfiguration = &MockConfiguration{}
+
+//using method for configuration substitution
 var TestConfiguration = mockConfiguration.NewConfiguraion()
 
 func TestNewConfiguraion(t *testing.T) {
-	configuratin := TestConfiguration
-	expectedURI := configuratin.NodeURI
+	expectedURI := TestConfiguration.NodeURI
 	actualConfiguration := NewConfiguraion()
 
 	actualURI := actualConfiguration.NodeURI

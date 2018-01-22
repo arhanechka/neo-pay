@@ -14,8 +14,10 @@ type CustomerInt interface {
 	CreateCustomer(configuration *Configuration) Customer
 }
 
+// new struct for mocking
 type MockCustomer struct{}
 
+//func for customer substitution
 func (*MockCustomer) CreateCustomer(Configuration) Customer {
 	var customer Customer
 	customer.AssignedAddress = "AL25CRCDB1jfWPgxMKgWQ5MvWxpTy2BfJ6"

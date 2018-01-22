@@ -5,13 +5,16 @@ import (
 	//"fmt"
 )
 
+//declaration of structure for mocking configuration
 var mockCustomer = &MockCustomer{}
+
+//using method for configuration substitution
 var TestCustomer = mockCustomer.CreateCustomer(*TestConfiguration)
 
 func TestGetNewAddress(t *testing.T) {
 	expectedLength := len("AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4")
 
-	actualAddress, err := GetNewAddress(TestConfiguration)
+	actualAddress, err := GetNewAddress(TestConfiguration) //here we use mock of configuration
 	if err != nil {
 		t.Errorf("GetNewAddress returned error: %v", err)
 	}
@@ -28,8 +31,8 @@ func TestCreateCustomer(t *testing.T) {
 	expectedStatusPaid := false
 	//expectedAddress := "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4"
 
+	//here we use only mock of configuration, because we need the actual CurrentBlock for comparing
 	actualCustomer := CreateCustomer(TestConfiguration)
-
 	if actualCustomer.Deposit != expectedBalance {
 		t.Errorf("CreateCustomer returned unexpected customer object balance : got %v want %v", actualCustomer.Deposit, expectedBalance)
 	}
