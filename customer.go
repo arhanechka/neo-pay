@@ -12,19 +12,7 @@ import (
 
 type CustomerInt interface {
 	CreateCustomer(configuration *Configuration) Customer
-}
-
-// new struct for mocking
-type MockCustomer struct{}
-
-//func for customer substitution
-func (*MockCustomer) CreateCustomer(Configuration) Customer {
-	var customer Customer
-	customer.AssignedAddress = "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4"
-	customer.Deposit = 0
-	customer.StartBlock = 182117
-	customer.StatusPaid = false
-	return customer
+	GetNewAddress(configuration *Configuration) (string, error)
 }
 
 type Customer struct {

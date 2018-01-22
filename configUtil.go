@@ -16,16 +16,6 @@ type Configuration struct {
 	WaitTimeSec int
 }
 
-// new struct for mocking
-type MockConfiguration struct{}
-
-//func for configuration substitution
-func (*MockConfiguration) NewConfiguraion() *Configuration {
-	var configuration Configuration
-	configuration.NodeURI = "http://localhost:10332"
-	return &configuration
-}
-
 func NewConfiguraion() *Configuration {
 	file, _ := os.Open("config.json")
 	decoder := json.NewDecoder(file)

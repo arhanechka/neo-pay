@@ -4,8 +4,18 @@ import (
 	"testing"
 )
 
+// new struct for mocking
+type MockConfiguration struct{}
+
+//func for configuration substitution
+func (*MockConfiguration) NewConfiguraion() *Configuration {
+	var configuration Configuration
+	configuration.NodeURI = "http://localhost:20332"
+	return &configuration
+}
+
 //declaration of structure for mocking configuration
-var mockConfiguration = &MockConfiguration{}
+var mockConfiguration = MockConfiguration{}
 
 //using method for configuration substitution
 var TestConfiguration = mockConfiguration.NewConfiguraion()

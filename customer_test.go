@@ -5,11 +5,24 @@ import (
 	//"fmt"
 )
 
+// new struct for mocking
+type MockCustomer struct{}
+
+//func for customer substitution
+func (*MockCustomer) CreateCustomer(configuration *Configuration) Customer {
+	var customer Customer
+	customer.AssignedAddress = "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4"
+	customer.Deposit = 0
+	customer.StartBlock = 182117
+	customer.StatusPaid = false
+	return customer
+}
+
 //declaration of structure for mocking configuration
-var mockCustomer = &MockCustomer{}
+var mockCustomer = MockCustomer{}
 
 //using method for configuration substitution
-var TestCustomer = mockCustomer.CreateCustomer(*TestConfiguration)
+var TestCustomer = mockCustomer.CreateCustomer(TestConfiguration)
 
 func TestGetNewAddress(t *testing.T) {
 	expectedLength := len("AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4")
