@@ -35,13 +35,13 @@ func TestCreateCustomer(t *testing.T) {
 	actualCustomer := CreateCustomer(TestConfiguration)
 
 	if actualCustomer.Deposit != TestCustomer.Deposit {
-		t.Errorf("CreateCustomer returned unexpected customer object balance : got %v want %v", actualCustomer.Deposit, expectedBalance)
+		t.Errorf("CreateCustomer returned unexpected customer object balance : got %v want %v", actualCustomer.Deposit, TestCustomer.Deposit)
 	}
 	if actualCustomer.StartBlock != expectedStartBlock {
 		t.Errorf("CreateCustomer returned unexpected customer object startBlock : got %+v want %+v", actualCustomer.StartBlock, expectedStartBlock)
 	}
 	if actualCustomer.StatusPaid != TestCustomer.StatusPaid {
-		t.Errorf("CreateCustomer returned unexpected customer object statusPaid : got %v want %v", actualCustomer.StatusPaid, expectedStatusPaid)
+		t.Errorf("CreateCustomer returned unexpected customer object statusPaid : got %v want %v", actualCustomer.StatusPaid, TestCustomer.StatusPaid)
 	}
 
 	//if actualCustomer.AssignedAddress != expectedAddress {

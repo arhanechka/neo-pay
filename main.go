@@ -2,11 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
-	"fmt"
 )
 
 var (
@@ -41,7 +42,7 @@ func StatusHandler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	//if current customer is empty or invalid
-	if CurrentCustomer.AssignedAddress == "" || CurrentCustomer.StartBlock ==-1 {
+	if CurrentCustomer.AssignedAddress == "" || CurrentCustomer.StartBlock == -1 {
 		CurrentCustomer = CreateCustomer(configuration)
 	}
 
