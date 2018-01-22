@@ -32,6 +32,7 @@ func CreateCustomer(configuration *Configuration) Customer {
 		_assignedAddress = ""
 	}
 	_startBlock := GetCurrentBlockIndex(configuration)
+
 	return Customer{AssignedAddress: _assignedAddress, Deposit: 0, StartBlock: _startBlock, StatusPaid: false}
 
 }
@@ -77,5 +78,7 @@ func GetNewAddress(configuration *Configuration) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	fmt.Println("response")
+	fmt.Println(response)
 	return response.Result, nil
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 	//"fmt"
 )
@@ -8,21 +9,27 @@ import (
 // new struct for mocking
 type MockCustomer struct{}
 
-//func for customer substitution
-func (*MockCustomer) CreateCustomer(configuration *Configuration) Customer {
-	var customer Customer
-	customer.AssignedAddress = "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4"
-	customer.Deposit = 0
-	customer.StartBlock = 182117
-	customer.StatusPaid = false
-	return customer
-}
-
 //declaration of structure for mocking configuration
 var mockCustomer = MockCustomer{}
 
 //using method for configuration substitution
 var TestCustomer = mockCustomer.CreateCustomer(TestConfiguration)
+
+//func for customer substitution
+func (*MockCustomer) CreateCustomer(configuration *Configuration) Customer {
+	var customer Customer
+	_assignedAddress, _ := mockCustomer.GetNewAddress(TestConfiguration)
+	customer.AssignedAddress = _assignedAddress
+	fmt.Println("getter" + customer.AssignedAddress)
+	customer.Deposit = 0
+	customer.StartBlock = 182117
+	customer.StatusPaid = false
+	return customer
+}
+func (*MockCustomer) GetNewAddress(configuration *Configuration) (string, error) {
+	address := "AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4"
+	return address, nil
+}
 
 func TestGetNewAddress(t *testing.T) {
 	expectedLength := len("AcbUNbdFMdYLBronyM3cHBzi49WKEwJWD4")
