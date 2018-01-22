@@ -8,7 +8,6 @@ import (
 )
 
 func TestCheckVouts(t *testing.T) {
-
 	customer := TestCustomer
 	var vouts []models.Vout
 
